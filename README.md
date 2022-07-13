@@ -1,5 +1,7 @@
 # Interview Scheduler
 
+[static example](https://github.com/lighthouse-labs/scheduler-sass/blob/master/index.html)
+
 ## Setup
 
 Install dependencies with `npm install`.
