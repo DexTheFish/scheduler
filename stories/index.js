@@ -8,6 +8,32 @@ import "index.scss";
 import Button from "components/Button";
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
+import InterviewerListItem from "components/InterviewerListItem";
+
+// Mock Data
+const days = [
+  {
+    id: 1,
+    name: "Monday",
+    spots: 2,
+  },
+  {
+    id: 2,
+    name: "Tuesday",
+    spots: 5,
+  },
+  {
+    id: 3,
+    name: "Wednesday",
+    spots: 0,
+  },
+];
+const interviewer = {
+  id: 1,
+  name: "Sylvia Palmer",
+  avatar: "https://i.imgur.com/LpaY82x.png"
+};
+
 
 // Button Tests
 storiesOf("Button", module)
@@ -31,38 +57,20 @@ storiesOf("Button", module)
   ));
 
 
-// Day List Item tests
-storiesOf("DayListItem", module)
-.addParameters({
-backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-}) // Provides the default background color for our component
-.add("Unselected", () => <DayListItem name="Monday" spots={5} />)
-.add("Selected", () => <DayListItem name="Monday" spots={5} selected />) 
-.add("Full", () => <DayListItem name="Monday" spots={0} />)
-.add("Clickable", () => (
-  <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
-));
-
-// Mock Data
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
-
-
+  // Day List Item tests
+  storiesOf("DayListItem", module)
+  .addParameters({
+    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+  }) // Provides the default background color for our component
+  .add("Unselected", () => <DayListItem name="Monday" spots={5} />)
+  .add("Selected", () => <DayListItem name="Monday" spots={5} selected />) 
+  .add("Full", () => <DayListItem name="Monday" spots={0} />)
+  .add("Clickable", () => (
+    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
+    ));
+    
+    
+    
 // Day List tests
 storiesOf("DayList", module)
 .addParameters({
@@ -77,3 +85,32 @@ storiesOf("DayList", module)
 .add("Wednesday", () => (
     <DayList days={days} day={"Wednesday"} setDay={action("setDay")} />
 ));
+
+// Interviewer List Item tests
+storiesOf("InterviewerListItem", module)
+  .addParameters({
+    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+  })
+  .add("Unselected", () => (
+    <InterviewerListItem
+      id={interviewer.id}
+      name={interviewer.name}
+      avatar={interviewer.avatar}
+    />
+  ))
+  .add("Selected", () => (
+    <InterviewerListItem
+      id={interviewer.id}
+      name={interviewer.name}
+      avatar={interviewer.avatar}
+      selected
+    />
+  ))
+  .add("Clickable", () => (
+    <InterviewerListItem
+      id={interviewer.id}
+      name={interviewer.name}
+      avatar={interviewer.avatar}
+      setInterviewer={action("setInterviewer")}
+    />
+  ));
