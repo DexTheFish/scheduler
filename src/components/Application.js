@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
+import "components/Application";
 
 // Mock Data
 const days = [
@@ -90,7 +91,7 @@ export default function Application(props) {
         {Object.values(appointments).map(appointment => {
           return <Appointment key={appointment.id} {...appointment}/>
         })}
-        <Appointment key="last" time="5pm" />
+        <Appointment key="last" time="5pm" id={100} />
       </section>
     </main>
   );
