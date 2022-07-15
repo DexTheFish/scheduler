@@ -197,7 +197,6 @@ storiesOf("Appointment", module)
       interviewers={interviewers}
       onSave={action("onSave")}
       onCancel={action("onCancel")}
-      setInterviewer={action("setInterviewer")} // needed...?
     />
   ))
   .add("Appointment Empty", () => (
