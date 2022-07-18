@@ -5,7 +5,7 @@ import Appointment from "./Appointment";
 import "components/Application";
 import axios from "axios";
 import { getAppointmentsForDay, getInterview } from "helpers/selectors";
-
+import useVisualMode from "hooks/useVisualMode";
 
 export default function Application(props) {
 
