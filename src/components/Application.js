@@ -18,7 +18,7 @@ export default function Application(props) {
   const setDay = (day) => setState({ ...state, day });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
-  // fetch data from API 
+  // GET data
   useEffect(() => {
     Promise.all([
       axios.get("http://localhost:8001/api/days"),
@@ -29,6 +29,7 @@ export default function Application(props) {
     })
   }, [])
 
+  // PUT interview data
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -38,11 +39,15 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({
-      ...state,
-      appointments
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    .then((response) => {
+      setState({...state, appointments});
+      })
+    .catch((error) => {
+      console.log(error);
     });
   }
+  // DELETE interview data
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
@@ -52,10 +57,14 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({
-      ...state,
-      appointments
-    });
+    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+    .then((response) => {
+      console.log(response);
+      setState({...state, appointments});
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
 
