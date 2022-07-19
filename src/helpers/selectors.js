@@ -16,9 +16,12 @@ export function getInterviewersForDay(state, day) {
   if (!dayObj) {
     return [];
   }
-  const interviewersForDay = dayObj.appointments.map(id => state.appointments[id]);
-  return interviewersForDay;
+
+  const interviewsForDay = dayObj.interviewers.map(id => state.interviewers[id]);
+  return interviewsForDay;
+  // currently returns an array of appointments for the day
 }
+
 
 
 export function getInterview(state, interview) {
