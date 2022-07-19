@@ -15,11 +15,10 @@ export default function Application(props) {
     appointments: {},
     interviewers: {}
   });
-  
   const setDay = (day) => setState({ ...state, day });
-  
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
+  // fetch data from API 
   useEffect(() => {
     Promise.all([
       axios.get("http://localhost:8001/api/days"),
@@ -31,10 +30,23 @@ export default function Application(props) {
   }, [])
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({
+      ...state,
+      appointments
+    });
+  }
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
     };
     const appointments = {
       ...state.appointments,
@@ -71,7 +83,16 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {Object.values(dailyAppointments).map(appointment => {
-          return  <Appointment key={appointment.id} {...appointment} interview={getInterview(state, appointment.interview)} bookInterview={bookInterview} interviewers={getInterviewersForDay(state, state.day)}/>
+          return (
+            <Appointment 
+              key={appointment.id}
+              {...appointment}
+              interview={getInterview(state, appointment.interview)}
+              interviewers={getInterviewersForDay(state, state.day)}
+              bookInterview={bookInterview}
+              cancelInterview={cancelInterview}
+            />
+          )
         })}
         <Appointment key="last" time="5pm" id={100} />
       </section>

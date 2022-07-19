@@ -13,9 +13,8 @@ export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
-
-  //When props.interview contains a value, then we want to pass useVisualMode the SHOW mode, if it is empty then we should pass EMPTY.
-  const { mode, transition, back} = useVisualMode(props.interview ? SHOW : EMPTY)
+  const DELETE = "DELETE";
+  const { mode, transition, back} = useVisualMode(props.interview ? SHOW : EMPTY);
 
   function save(name, interviewer) {
     const interview = {
@@ -23,22 +22,30 @@ export default function Appointment(props) {
       interviewer
     };
     props.bookInterview(props.id, interview);
+    transition(SHOW);
   }
+  function deleteAppointment() {
+    props.cancelInterview(props.id);
+    transition(EMPTY);
+  }
+
+
+
 
   return (
     <Fragment>
       <Header time={props.time}/>
-
       {mode === EMPTY && <Empty {...props} onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
         <Show
           {...props}
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          onEdit={() => transition(EMPTY)} //temporary
+          onDelete={deleteAppointment}
         />
       )}
       {mode === CREATE && (
-        // need to replace interviewers!
         <Form onCancel={back} onSave={save} interviewers={props.interviewers} />
       )}
 
