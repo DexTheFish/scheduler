@@ -4,7 +4,7 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 import "components/Application";
 import axios from "axios";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import useVisualMode from "hooks/useVisualMode";
 
 export default function Application(props) {
@@ -15,10 +15,10 @@ export default function Application(props) {
     appointments: {},
     interviewers: {}
   });
+  
   const setDay = (day) => setState({ ...state, day });
+  
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-
-
 
   useEffect(() => {
     Promise.all([
@@ -30,6 +30,9 @@ export default function Application(props) {
     })
   }, [])
 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
 
 
   return (
@@ -56,7 +59,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {Object.values(dailyAppointments).map(appointment => {
-          return <Appointment key={appointment.id} {...appointment} interview={getInterview(state, appointment.interview)}/>
+          return  <Appointment key={appointment.id} {...appointment} interview={getInterview(state, appointment.interview)} bookInterview={bookInterview} interviewers={getInterviewersForDay(state, state.day)}/>
         })}
         <Appointment key="last" time="5pm" id={100} />
       </section>
