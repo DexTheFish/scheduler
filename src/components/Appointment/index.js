@@ -45,7 +45,7 @@ export default function Appointment(props) {
           {...props}
           student={props.interview.student } 
           interviewer={props.interview.interviewer}
-          onEdit={() => transition(EMPTY)} //temporary
+          onEdit={() => transition(EDIT)}
           onDelete={() => transition(CONFIRM)}
         />
       )}
@@ -61,7 +61,9 @@ export default function Appointment(props) {
       {mode === CONFIRM && (
         <Confirm message="are you sure you want to delete that?" onCancel={back} onConfirm={deleteAppointment} />
       )}
-
+      {mode === EDIT && (
+        <Form onCancel={back} onSave={save} interviewers={props.interviewers} student={props.interview.student} interviewer={props.interview.interviewer.id}/>
+      )}
     </Fragment>
   )
 
