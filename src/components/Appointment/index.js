@@ -41,7 +41,7 @@ export default function Appointment(props) {
   }
 
   return (
-    <Fragment>
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time}/>
       {mode === EMPTY && <Empty {...props} onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
@@ -74,7 +74,7 @@ export default function Appointment(props) {
       {mode === ERROR_DELETE && (
         <Error message="failed to delete appointment" onClose={back} />
       )}
-    </Fragment>
+    </article>
   )
 
 }
