@@ -66,7 +66,7 @@ export default function Appointment(props) {
         <Confirm message="are you sure you want to delete that?" onCancel={back} onConfirm={deleteAppointment} />
       )}
       {mode === EDIT && (
-        <Form onCancel={back} onSave={save} interviewers={props.interviewers} student={props.interview.student} interviewer={props.interview.interviewer.id}/>
+        <Form onCancel={back} onSave={save} interviewers={props.interviewers} student={props.interview.student} interviewer={props.interview.interviewer ? props.interview.interviewer.id : null}/>
       )}
       {mode === ERROR_SAVE && (
         <Error message="failed to save appointment" onClose={back} />
