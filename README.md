@@ -1,8 +1,9 @@
 # Interview Scheduler
 
+A modern client application using the React view library, built during LHL bootcamp. The goal of this project was to learn more about React, Webpack and Babel, Axios, Storybook, Jest, Cypress, and other tools.
 
 
-## Screenshots
+
 !["home"](https://github.com/DexTheFish/scheduler/blob/master/docs/home.png?raw=true)  
 !["filled form"](https://github.com/DexTheFish/scheduler/blob/master/docs/form-full.png?raw=true)  
 <!--
