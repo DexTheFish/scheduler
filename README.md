@@ -2,6 +2,13 @@
 
 [static example](https://github.com/lighthouse-labs/scheduler-sass/blob/master/index.html)
 
+## Screenshots
+["home"](https://github.com/DexTheFish/scheduler/blob/master/docs/home.png?raw=true)  
+["empty form"](https://github.com/DexTheFish/scheduler/blob/master/docs/form-empty.png?raw=true)  
+["filled form"](https://github.com/DexTheFish/scheduler/blob/master/docs/form-full.png?raw=true)  
+["saving"](https://github.com/DexTheFish/scheduler/blob/master/docs/form-saving.png?raw=true)  
+["diagram"](https://github.com/DexTheFish/scheduler/blob/master/docs/diagram.png?raw=true)  
+
 ## Setup
 
 Install dependencies with `npm install`.
