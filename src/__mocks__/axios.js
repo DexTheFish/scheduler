@@ -83,7 +83,13 @@ export default {
   put: jest.fn((url, interview) => {
     return Promise.resolve({
       status: 204,
-      statusText: "No Content",
+      statusText: "No Content"
     });
   }),
+  delete: jest.fn(() => {
+    return Promise.resolve({
+      status: 204,
+      statusText: "No Content"
+    })
+  })
 };
