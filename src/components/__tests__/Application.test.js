@@ -13,6 +13,7 @@ import {
   getByDisplayValue,
 } from "@testing-library/react";
 import Application from "components/Application";
+import axios from "axios";
 
 afterEach(cleanup);
 
@@ -59,8 +60,6 @@ describe("Application", () => {
 
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
-
-  // the following two tests are unfinished. see activity "The Next Tests"
 
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
     // 1. Render the Application.
@@ -121,4 +120,16 @@ describe("Application", () => {
       expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
   });
 
+  it("shows the save error when failing to save an appointment", () => {
+    axios.put.mockRejectedValueOnce();
+  });
+
+  it("shows the save error when failing to save an appointment", () => {
+    // ...
+  });
+
+  it("shows the delete error when failing to delete an existing appointment", () => {
+    // ...
+  });
+  
 });
